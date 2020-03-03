@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
@@ -58,7 +59,7 @@ def pre_save(sender, instance, raw, using, update_fields, **kwargs):
                 # We need a better way for this to work. ManyToMany will fail on pre_save on create
                 return None
 
-            if instance.pk is None or instance.pk == '' or instance.pk == ' ':
+            if instance.pk is None or type(instance.pk) == uuid.UUID:
                 created = True
             else:
                 created = False
