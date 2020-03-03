@@ -58,7 +58,7 @@ def pre_save(sender, instance, raw, using, update_fields, **kwargs):
                 # We need a better way for this to work. ManyToMany will fail on pre_save on create
                 return None
 
-            if instance.pk is None:
+            if instance.pk is None or '':
                 created = True
             else:
                 created = False
